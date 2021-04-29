@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poll</title>
+</head>
+<body>
+    <h1>Poll</h1>
+    <p><%= messages%></p>
+    
+    <% if (isVoted) { %>
+        <h1>Thanks for Voting</h1>
+    <% } else { %>
+        <h2><%= header %></h2>
+        <form action="/", method="POST">
+            <% for(let candidate of candidates) { %>
+                <input type="radio" id="<%=candidate.name%>" name="candidate" value="<%=candidate._id%>">
+                <label for="<%=candidate.name%>"><%=candidate.name%></label><br>
+                <br>
+            <% }%>  
+            <input type="submit" value="Vote">
+        </form> 
+        <br>
+    <% } %>
+    <form action="/logout" method="POST">
+        <button>Sign Out</button>
+    </form>
+    
+</body>
+</html>
